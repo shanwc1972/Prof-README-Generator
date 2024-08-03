@@ -9,7 +9,10 @@ const questions = ['Please enter your project title',
     'Please supply any installation instructions',
     'Please provide any usage information',
     'Please supply any contributing guidelines',
-    'Please provide any test instructions'
+    'Please provide any test instructions',
+    'Please select a license',
+    'Please enter your GIT username',
+    'Please enter you E-mail address',
  ];
 
 // TODO: Create a function to write README file
@@ -18,38 +21,6 @@ function writeToFile(fileName, data) {
         err ? console.log(err) : console.log('Successfully created readme file')
       );
 }
-
-// Function to generate the readme file
-function generateReadMe({ projecttitle, Description, Installation, Usage, Contributing, Tests }){
-   
-    //console.log(projecttitle);
-    //console.log(Description);
-    //console.log(Installation);
-    //console.log(Usage);
-    //console.log(Contributing);
-    //console.log(Tests);
-
-    const strReadme = `# ${projecttitle}
-  
-  ## Description
-  ${Description}
-  
-  ## Installation
-  ${Installation}
-  
-  ## Usage
-  ${Usage}
-  
-  ## Contributions
-  ${Contributing}
-  
-  ## Tests
-  ${Tests}
-  
-  ## License`;
-  return strReadme;
-}
-    
 
 // TODO: Create a function to initialize and run the app
 function init() {
@@ -85,23 +56,26 @@ function init() {
       name: 'Tests',
       message: questions[5],
     },
+    {
+      type: 'list',
+      name: 'License',
+      message: questions[6],
+      choices: ['None', 'Apache Licence 2.0', 'GNU General Public License v3.0', 'MIT License'],
+    },
+    {
+      type: 'input',
+      name: 'GITUserName',
+      message: questions[7],
+    },
+    {
+      type: 'input',
+      name: 'E-mail',
+      message: questions[8],
+    }
   ])
   .then((answers) => {
-    console.log(answers);
-    //const {
-    //    projecttitle,
-    //    Description,
-    //    Installation,
-    //    Usage,
-    //    Contributing,
-    //    Tests
-    //} = answers;
-    for (const key in answers) {
-        if (answers.hasOwnProperty(key)) {
-            console.log(`${key}: ${answers[key]}`);
-        }
-    };
-    const ReadmeContent = generateReadMe(answers);
+    // Call the imported generateMarkdown function to create our readme output
+    const ReadmeContent = genmd.generateMarkdown(answers);
     writeToFile('README.md', ReadmeContent);
   });
 }
