@@ -60,7 +60,21 @@ function init() {
       type: 'list',
       name: 'License',
       message: questions[6],
-      choices: ['None', 'Apache Licence 2.0', 'GNU General Public License v3.0', 'MIT License'],
+      choices: ['None', 
+        'Apache Licence 2.0',
+        'GNU General Public License v3.0',
+        'MIT License',
+        'BSD 2-Clause License',
+        'BSD 3-Clause License',
+        'Boost Software License 1.0',
+        'Creative Commons Zero v1.0 Universal',
+        'Eclipse Public License 2.0',
+        'GNU Affero General Public License v3.0',
+        'GNU General Public License v2.0',
+        'GNU Lesser General Public License v3.0',
+        'Mozilla Public License 2.0',
+        'The Unlicense' 
+      ],
     },
     {
       type: 'input',
@@ -75,11 +89,19 @@ function init() {
   ])
   .then((answers) => {
     // Call the imported generateMarkdown function to create our readme output
-    const ReadmeContent = genmd.generateMarkdown(answers);
+    let ReadmeContent = genmd.generateMarkdown(answers);
+    //Check for license
+    let strLicense = genmd.renderLicenseSection(ReadmeContent);
+    let LicensebadgeImage = genmd.renderLicenseBadge(strLicense);
+    console.log(`License selection detected. Inserting badge ${LicensebadgeImage}`);
+    //Insert license badge and content
+    ReadmeContent = genmd.insertLicenseBadge(LicensebadgeImage, ReadmeContent);
+    ReadmeContent = genmd.insertLicenseSection(strLicense, ReadmeContent);
+
+    //Write out the updated Readme content
     writeToFile('README.md', ReadmeContent);
   });
 }
 
 // Function call to initialize app
 init();
-

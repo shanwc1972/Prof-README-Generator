@@ -1,0 +1,15 @@
+Professional Readme Generator
+
+This is an application that will generate a readme file derived from a number of prompts. In fact this readme file, you are reading right now, was generated using the app. 
+
+This program requires the the use of Node js. Node js will need the be installed, along with the inquirer 8.2.4 package
+
+Application can be started by opening within its installed folder and running: node index.js. Answer all the prompts until complete. A readme file will be subsequently generated. A video showing a demonstration of the app can be found below: 
+
+Developed by Warren Shan.
+
+Test answers are provided within the file testscript.txt (in order to produce this exactly readme).
+
+shanwc1972
+
+shanwc1972@hotmail.com
