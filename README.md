@@ -16,7 +16,7 @@
   This program requires the the use of Node js. Node js will need the be installed, along with the inquirer 8.2.4 package
   
   ## Usage
-  Answer all the prompts until complete. A readme file will be subsequently generated. A video showing a demonstration of the app can be found below: 
+  Application can be started by opening within its installed folder and running: node index.js. Answer all the prompts until complete. A readme file will be subsequently generated. A video showing a demonstration of the app can be found below: 
   
   ## Contributing
   Developed by Warren Shan.

@@ -65,6 +65,7 @@ function insertLicenseBadge(license, markdownInput) {
 
 //The function below inserts the license details into the readme file
 function insertLicenseSection(license, markdownInput) {
+  console.log (license);
   const strDescSection = '## License'
   const nSectionStart = markdownInput.indexOf(strDescSection) + 11;
   license = 'This software can be redistributed and/or modified under the terms of the ';

@@ -93,10 +93,11 @@ function init() {
     //Check for license
     let strLicense = genmd.renderLicenseSection(ReadmeContent);
     let LicensebadgeImage = genmd.renderLicenseBadge(strLicense);
-    console.log(`License selection detected. Inserting badge ${LicensebadgeImage}`);
     //Insert license badge and content
-    ReadmeContent = genmd.insertLicenseBadge(LicensebadgeImage, ReadmeContent);
-    ReadmeContent = genmd.insertLicenseSection(strLicense, ReadmeContent);
+    if(LicensebadgeImage != ''){
+      ReadmeContent = genmd.insertLicenseBadge(LicensebadgeImage, ReadmeContent);
+      ReadmeContent = genmd.insertLicenseSection(strLicense, ReadmeContent);
+    }
 
     //Write out the updated Readme content
     writeToFile('README.md', ReadmeContent);

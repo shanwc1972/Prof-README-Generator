@@ -11,5 +11,3 @@ Developed by Warren Shan.
 Test answers are provided within the file testscript.txt (in order to produce this exactly readme).
 
 shanwc1972
-
-shanwc1972@hotmail.com
