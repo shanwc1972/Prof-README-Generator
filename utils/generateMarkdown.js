@@ -64,13 +64,14 @@ function insertLicenseBadge(license, markdownInput) {
 }
 
 //The function below inserts the license details into the readme file
-function insertLicenseSection(license, markdownInput) {
-  console.log (license);
-  const strDescSection = '## License'
-  const nSectionStart = markdownInput.indexOf(strDescSection) + 11;
-  license = 'This software can be redistributed and/or modified under the terms of the ';
-  const output = [markdownInput.slice(0, nSectionStart), license, markdownInput.slice(nSectionStart)].join('');
-  
+function insertLicenseSection(license, licenseLink, markdownInput) {
+  const strLicenseSection = '## License'
+  let nSectionStart = markdownInput.indexOf(strLicenseSection) + 11;
+  const strPreSectionText = markdownInput.slice(0, nSectionStart);
+  const strLicenseText = 'This software can be redistributed and/or modified under the terms of the ' + license;
+  const additionalText = '. Further licensing details can be found at ' + licenseLink;
+  const strPostSectionText = markdownInput.slice(nSectionStart+license.length+2);
+  const output = strPreSectionText + strLicenseText + additionalText + strPostSectionText;
   return output;
 }
 
@@ -121,8 +122,7 @@ function generateMarkdown(data) {
   ${answers[6].value}
   
   ## Questions
-  Do you have any questions? If so please forward them to the GIT username: ${answers[7].value}, or e-mail them to: ${answers[8].value}
-  `;
+  Do you have any questions? If so please e-mail them to: ${answers[8].value}. Also checkout the repository details on my Github account https://github.com/${answers[7].value}`;
   return strMarkdown;
 }
 

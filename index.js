@@ -15,14 +15,14 @@ const questions = ['Please enter your project title',
     'Please enter you E-mail address',
  ];
 
-// TODO: Create a function to write README file
+// Below is a function to write README file
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
         err ? console.log(err) : console.log('Successfully created readme file')
       );
 }
 
-// TODO: Create a function to initialize and run the app
+// The function below initializes and run the app
 function init() {
     inquirer
   .prompt([
@@ -91,12 +91,13 @@ function init() {
     // Call the imported generateMarkdown function to create our readme output
     let ReadmeContent = genmd.generateMarkdown(answers);
     //Check for license
-    let strLicense = genmd.renderLicenseSection(ReadmeContent);
-    let LicensebadgeImage = genmd.renderLicenseBadge(strLicense);
-    //Insert license badge and content
+    const strLicense = genmd.renderLicenseSection(ReadmeContent);
+    const LicensebadgeImage = genmd.renderLicenseBadge(strLicense);
+    const LicenseLink = genmd.renderLicenseLink(strLicense);
+    //Insert license badge and content if the license details are not empty
     if(LicensebadgeImage != ''){
       ReadmeContent = genmd.insertLicenseBadge(LicensebadgeImage, ReadmeContent);
-      ReadmeContent = genmd.insertLicenseSection(strLicense, ReadmeContent);
+      ReadmeContent = genmd.insertLicenseSection(strLicense, LicenseLink, ReadmeContent);
     }
 
     //Write out the updated Readme content
